@@ -16,12 +16,8 @@
 
   // Returns true if form token matches session token, false if not.
   function csrf_token_is_valid() {
-    echo '1';
     if(!isset($_POST['csrf_token'])) { return false; }
-    echo '2';
-    if(!isset($_SESSION['user_id'])) {exit('asdfasdfasdfadsfsadf');}
-    //if(!isset($_SESSION['csrf_token'])) { return false; }
-    echo '3';
+    if(!isset($_SESSION['csrf_token'])) { return false; }
     return ($_POST['csrf_token'] === $_SESSION['csrf_token']) && csrf_token_is_recent();
   }
 

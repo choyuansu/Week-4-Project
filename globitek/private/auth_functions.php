@@ -6,7 +6,6 @@
     //session_regenerate_id();
     // Store user's ID in session
     $_SESSION['user_id'] = $user['id'];
-    exit($_SESSION['user_id'] . '   afwefjweifja');
     // Store last login time in session
     $_SESSION['last_login'] = time();
 
@@ -62,9 +61,7 @@
     // - Its presence indicates the user is logged in.
     // - Its value tells which user for looking up their record.
     if(!isset($_SESSION['user_id'])) { return false; }
-    exit('2');
     if(!session_is_valid()) { return false; }
-    exit('3');
     return true;
   }
 
@@ -72,7 +69,7 @@
   // require a valid login before granting acccess to the page.
   function require_login() {
     if(!is_logged_in()) {
-      //destroy_current_session();
+      destroy_current_session();
       redirect_to(url_for('/staff/login.php'));
     } else {
       // Do nothing, let the rest of the page proceed

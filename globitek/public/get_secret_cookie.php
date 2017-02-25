@@ -1,9 +1,13 @@
 <?php
 require_once('../private/initialize.php');
 
-// TODO: sign cookie???
-$key = substr(md5('choyuansu', true), 0, 16);
-$iv = '1234567812345678';
-$_COOKIE['scrt'] = openssl_decrypt($_COOKIE['scrt'], 'AES-128-CBC', $key, true, $iv);
-echo $_COOKIE['scrt'];
+$value = $_COOKIE['scrt'];
+if(signed_string_is_valid($value)) {
+  $pos = strpos($value, "--");
+  $encrypted_string = substr($value, 0, $pos);
+  echo decrypt($encrypted_string);
+}
+else {
+  exit('Error: invalid signature');
+}
 ?>

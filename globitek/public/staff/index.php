@@ -1,6 +1,5 @@
 <?php
 require_once('../../private/initialize.php');
-//exit('asdkfhawlijfhalikfn');
 require_login();
 ?>
 

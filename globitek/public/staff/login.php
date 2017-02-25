@@ -13,17 +13,13 @@ $password = '';
 
 if(is_post_request()) {
   // verify request
-  /*if(!request_is_same_domain() || !csrf_token_is_valid()) {
-    exit('Error: invalid request');
-  }*/
-  if(!request_is_same_domain()) {
-    echo 'aaa';
-    exit();
+  if(!request_is_same_domain() || !csrf_token_is_valid()) {
+    echo 'Error: invalid request';
+    exit;
   }
-  /*if(!csrf_token_is_valid()) {
-    echo 'bbb';
-    exit();
-  }*/
+  if(!csrf_token_is_recent()) {
+    exit('Error: session timeout');
+  }
 
   // Confirm that values are present before accessing them.
   if(isset($_POST['username'])) { $username = $_POST['username']; }
@@ -49,7 +45,6 @@ if(is_post_request()) {
       if($password === $master_password) {
         // Username found, password matches
         log_in_user($user);
-        //exit('yooooooo');
         // Redirect to the staff menu after login
         redirect_to('index.php');
       } else {
