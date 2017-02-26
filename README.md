@@ -51,6 +51,7 @@ The following advanced user stories are optional:
 * [x]  Bonus Objective 1: Identify security flaw in Objective #4 (requiring login on staff pages)
   * [x]  Identify the security principal not being followed.
   * [x]  Write a short description of how the code could be modified to be more secure.
+  * The error messages for incorrect login give info about other usernames or password. Modify the error message to be the same for all errors.
 
 * [x] Bonus Objective 2: Add CSRF protections to all forms in the staff directory
 
